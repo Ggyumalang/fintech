@@ -31,7 +31,6 @@ class LoanRequestServiceImpl (
     override fun saveUserInfo(userInfoDto: UserInfoDto) = userInfoRepository.save(userInfoDto.toEntity())
 
     override fun loanRequestReview(userKey: String) {
-        TODO("Not yet implemented")
     }
 
 

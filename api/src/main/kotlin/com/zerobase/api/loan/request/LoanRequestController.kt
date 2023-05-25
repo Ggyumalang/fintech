@@ -14,7 +14,7 @@ class LoanRequestController (
 
     @PostMapping("/request")
     fun loanRequest(
-            @RequestBody loanRequestInputDto: LoanRequestDto.LoanRequestInputDto
+        @RequestBody loanRequestInputDto: LoanRequestDto.LoanRequestInputDto
     ) : ResponseEntity<LoanRequestDto.LoanRequestResponseDto> {
         return ResponseEntity.ok(loanRequestServiceImpl.loanRequestMain(loanRequestInputDto))
     }
