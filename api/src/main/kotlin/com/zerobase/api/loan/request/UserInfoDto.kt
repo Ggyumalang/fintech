@@ -1,6 +1,7 @@
 package com.zerobase.api.loan.request
 
 import com.zerobase.domain.domain.UserInfo
+import com.zerobase.kafka.dto.LoanRequestDto
 
 data class UserInfoDto (
         val userKey: String
@@ -9,5 +10,7 @@ data class UserInfoDto (
         , val userIncomeAmount: Long
 ){
     fun toEntity() : UserInfo =
-            UserInfo(userKey, userRegistrationNumber, userName, userIncomeAmount)
+            UserInfo(userKey, userName, userRegistrationNumber, userIncomeAmount)
+
+    fun toLoanRequestKafkaDto() = LoanRequestDto (userKey, userName, userRegistrationNumber,  userIncomeAmount)
 }
