@@ -2,6 +2,7 @@ package com.zerobase.kafka.config
 
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerConfig
+import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -35,14 +36,14 @@ class KafkaConfig {
         configurationProperties[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootstrapServer
         configurationProperties[ConsumerConfig.GROUP_ID_CONFIG] = groupIdConfig
         configurationProperties[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = autoOffsetResetConfig
-        configurationProperties[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
-        configurationProperties[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
+        configurationProperties[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
+        configurationProperties[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
 
         return DefaultKafkaConsumerFactory(configurationProperties)
     }
 
     @Bean
-    fun KafkaListenerContainerFactory() : ConcurrentKafkaListenerContainerFactory<String, String> {
+    fun kafkaListenerContainerFactory() : ConcurrentKafkaListenerContainerFactory<String, String> {
         val factory = ConcurrentKafkaListenerContainerFactory<String, String> ()
         factory.consumerFactory = consumerFactory()
         return factory

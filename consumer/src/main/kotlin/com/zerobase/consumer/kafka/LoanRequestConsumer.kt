@@ -11,7 +11,7 @@ class LoanRequestConsumer (
         private val objectMapper: ObjectMapper
         , private val loanRequestService: LoanRequestService
 ){
-    @KafkaListener(topics = ["loan_request"] , groupId = "fintech")
+    @KafkaListener(topics = ["loan_request"] , groupId = "fintech" , containerFactory = "kafkaListenerContainerFactory")
     fun loanRequestTopicConsumer(message : String) {
         val loanRequestKafkaDto = objectMapper.readValue(message , LoanRequestDto::class.java)
 
